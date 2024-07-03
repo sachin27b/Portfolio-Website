@@ -722,16 +722,6 @@ projectCards.forEach(card => {
         });
     });
 });
-        // Form submission animation
-        const form = document.querySelector('form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            gsap.to(form, { opacity: 0, y: -50, duration: 0.5 });
-            setTimeout(() => {
-                form.innerHTML = '<h3>Thank you for your message!</h3>';
-                gsap.from(form.firstChild, { opacity: 0, y: 50, duration: 0.5 });
-            }, 500);
-        });
 
         
     </script>
