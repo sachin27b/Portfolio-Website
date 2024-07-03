@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachin Bahuleyan - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --text-color: #64ffda;
+            --light-text: #f1f1f1;
+            --background-color: #0f0f0f;
+            --card-background: #16213e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            color: var(--light-text);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--text-color);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover::after {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-picture {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 4px solid var(--text-color);
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .typewriter {
+            font-size: 1.8rem;
+            overflow: hidden;
+            border-right: .15em solid var(--text-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-color); }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 2rem;
+            margin: 0 1rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: var(--text-color);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--text-color);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            transform: rotate(45deg);
+            z-index: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tags span {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 0.8rem;
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .tags span:hover {
+            transform: scale(1.05);
+            background-color: var(--text-color);
+        }
+
+        .skill-category {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        .skill-item {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            background-color: var(--text-color);
+        }
+
+        #contact {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 6rem 0;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        form {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            transition: box-shadow 0.3s ease;
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--text-color);
+        }
+
+        form button {
+            background-color: var(--text-color);
+            color: var(--light-text);
+            padding: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            #hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .typewriter {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">SB</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <div class="profile-picture">
+                    <img src="pic.jpg" alt="Sachin Bahuleyan">
+                </div>
+                <h1>Sachin Bahuleyan</h1>
+                <p class="typewriter">Data Scientist | Machine Learning Engineer</p>
+                <div class="social-links">
+                    <a href="https://github.com/sachin27b" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/sachin-bahuleyan/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>Passionate about machine learning, AI, and game development. Currently pursuing M.Tech in Computer Science at IIT Mandi.</p>
+        </section>
+
+        <section id="projects" class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Reinforced Bot Behavior</h3>
+                    <p>Designed and implemented a realistic driving environment within Unity with Reinforcement learning.</p>
+                    <div class="tags">
+                        <span>Unity 3D</span>
+                        <span>C#</span>
+                        <span>Reinforcement Learning</span>
+                    </div>
+                </div>
+                <!-- Add more project cards here -->
+            </div>
+        </section>
+
+        <section id="skills" class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skill-category">
+                <h3>Languages and Frameworks</h3>
+                <div class="skill-list">
+                    <span class="skill-item">C++</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">SQL</span>
+                    <span class="skill-item">PyTorch</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">HTML/CSS</span>
+                    <span class="skill-item">LaTeX</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Git/GitHub</span>
+                    <span class="skill-item">VS Code</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+        <!-- Rest of the sections remain the same, but update the styling to match -->
+        <!-- Rest of the sections remain the same -->
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sachin Bahuleyan. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript remains the same
+    </script>
+</body>
+</html>
