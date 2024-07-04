@@ -34,16 +34,7 @@
             cursor: none;
         }
 
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--accent-color);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-        }
+
 
         .container {
             max-width: 1400px;
@@ -405,7 +396,34 @@
 .btn-resume i {
     margin-right: 10px;
 }
+body {
+    cursor: none; /* Hide the default cursor */
+}
 
+#cursor-dot,
+#cursor-dot-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+#cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+}
+
+#cursor-dot-outline {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 255, 255, 0.1);
+}
         form {
             display: grid;
             gap: 1.5rem;
@@ -486,9 +504,11 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="custom-cursor"></div>
+    <div id="cursor-dot"></div>
+<div id="cursor-dot-outline"></div>
+
     <canvas id="network-bg"></canvas>
-    <div class="custom-cursor"></div>
+
 
     <header>
         <nav class="container">
@@ -585,12 +605,45 @@
     </footer>
 
     <script>
-        // Custom cursor
-        const cursor = document.querySelector('.custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+// Custom cursor
+const cursorDot = document.querySelector("#cursor-dot");
+const cursorOutline = document.querySelector("#cursor-dot-outline");
+
+window.addEventListener("mousemove", (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+
+    cursorDot.style.opacity = "1";
+    cursorOutline.style.opacity = "1";
+});
+
+window.addEventListener("mouseout", () => {
+    cursorDot.style.opacity = "0";
+    cursorOutline.style.opacity = "0";
+});
+
+// Add hover effect to interactive elements
+const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-item');
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseover', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursorOutline.style.backgroundColor = 'rgba(0, 255, 255, 0.2)';
+    });
+    el.addEventListener('mouseout', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorOutline.style.backgroundColor = 'rgba(0, 255, 255, 0.1)';
+    });
+});
 
         // GSAP animations
         gsap.registerPlugin(ScrollTrigger);
