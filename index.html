@@ -381,10 +381,12 @@
     display: inline-block;
     background-color: var(--accent-color);
     color: var(--primary-color);
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;  /* Reduced padding */
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 0.9rem;  /* Reduced font size */
+
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -395,6 +397,7 @@
 
 .btn-resume i {
     margin-right: 10px;
+    font-size: 0.8rem;
 }
 body {
     cursor: none; /* Hide the default cursor */
@@ -497,7 +500,9 @@ body {
                 width: 300px;
                 height: 300px;
             }
-        }
+
+}
+
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
@@ -516,6 +521,7 @@ body {
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -535,7 +541,7 @@ body {
                     </div>
                 </div>
                 <div class="profile-picture">
-                    <img src="pic.jpg" alt="Sachin Bahuleyan">
+                    <img src="media/pic.jpg" alt="Sachin Bahuleyan">
                 </div>
             </div>
         </section>
@@ -550,7 +556,28 @@ body {
             Open to new chances and keen to embark on a journey of ongoing growth and development 
             in this dynamic industry.</p>
     </section>
-
+    <section id="projects" class="container">
+        <h2 class="section-title">Publications</h2>
+        <div class="project-card">
+            <div class="publication-preview">
+                <img src="media/lora_finetune.jpg" alt="Medium Article Preview" width="400" height="150">
+            </div>
+            <div class="publication-info">
+                <h3>Customer Support Chatbot using FLAN-T5 and LoRA</h3>
+                <p>An in-depth article on creating a customer support chatbot by fine-tuning the FLAN-T5 model using LoRA (Low-Rank Adaptation). Learn about advanced NLP techniques and their practical applications in customer service.</p>
+                <div class="tags">
+                    <span>NLP</span>
+                    <span>Machine Learning</span>
+                    <span>Chatbot</span>
+                    <span>FLAN-T5</span>
+                    <span>LoRA</span>
+                </div>
+                <a href="https://medium.com/@sachin270895/customer-support-chatbot-by-fine-tuning-flan-t5-using-lora-937bb3fae01e" target="_blank" class="btn-resume">
+                    <i class="fas fa-external-link-alt"></i> Read on Medium
+                </a>
+            </div>
+        </div>
+    </section>
     <section id="projects" class="container">
         <h2 class="section-title">Projects</h2>
         <div class="project-card">
@@ -659,7 +686,7 @@ body {
                 <p><i class="fas fa-phone"></i> Phone: +91-9990015516</p>
             </div>
             <div class="resume-link">
-                <a href="resume.pdf" target="_blank" class="btn-resume">
+                <a href="media/resume.pdf" target="_blank" class="btn-resume">
                     <i class="fas fa-file-pdf"></i> Download Resume
                 </a>
             </div>
@@ -852,6 +879,7 @@ projectCards.forEach(card => {
         });
     });
 });
+
 // Neural network background
 const canvas = document.getElementById('network-bg');
 const ctx = canvas.getContext('2d');
