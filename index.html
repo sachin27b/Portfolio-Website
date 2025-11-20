@@ -93,22 +93,28 @@
         <section id="projects" class="container">
             <h2 class="section-title">Projects</h2>
             <div class="project-card">
-                <h3>End to End RAG Based Chatbot</h3>
-                <p>Developed a Retrieval-Augmented Generation (RAG) based chatbot using Langchain framework. Leveraged miniLM v6 from HuggingFace for sentence embedding and Facebook AI Similarity Search (FAISS) for efficient vector database retrieval. Utilized Large Language Model Llama 2 7b quantized version for large language model capabilities. Built a web application for the project using Flask.</p>
+                <h3>Production-Ready RAG System with AWS Bedrock</h3>
+                <p>Built an enterprise-grade Flask application for PDF document processing featuring AWS Bedrock Knowledge Base integration and Groq LLM-powered question answering. Implemented automatic PDF chunking with configurable page sizes, AWS S3 integration for document storage, and synchronous ingestion jobs in AWS Bedrock. Features semantic retrieval using advanced search capabilities and AI-powered answer generation. Designed with modular architecture including separate service layers for PDF processing, S3 operations, ingestion, retrieval, and LLM services.</p>
                 <div class="tags">
                     <span>Python</span>
-                    <span>LangChain</span>
-                    <span>FAISS</span>
                     <span>Flask</span>
+                    <span>AWS Bedrock</span>
+                    <span>AWS S3</span>
+                    <span>Groq LLM</span>
+                    <span>RAG</span>
                 </div>
             </div>
             
             <div class="project-card">
-                <h3>End to End Student Performance Predictor</h3>
-                <p>Conducted comprehensive Exploratory Data Analysis (EDA) to understand data distribution, identify outliers, and studied relationships between features. Developed an end-to-end machine learning project for predicting student performance with data pipeline, exception handling and logging. Trained multiple models including linear regression, random forest, Decision Trees and XGBoost. Achieved an R-squared score of 87% on the held-out testing set. Built a web application for the project using Flask.</p>
+                <h3>Two-Tower Model for Product Search</h3>
+                <p>Implemented a sophisticated two-tower neural network architecture for product search using contrastive loss on Amazon ESCI dataset. Built separate query and product towers that map inputs into a shared embedding space using Alibaba-NLP/gte-multilingual-base embeddings. Integrated FAISS indexing for efficient similarity search across product embeddings. Developed end-to-end workflow: query embedding → query tower inference → FAISS search → ranked product retrieval. Leveraged MLflow for comprehensive model logging, versioning, and serving with dedicated endpoints for query tower and embedding models. Created real-time product recommendation system with SQLite database and Streamlit interface.</p>
                 <div class="tags">
                     <span>Python</span>
-                    <span>Flask</span>
+                    <span>PyTorch</span>
+                    <span>FAISS</span>
+                    <span>MLflow</span>
+                    <span>Streamlit</span>
+                    <span>Contrastive Learning</span>
                 </div>
             </div>
             
